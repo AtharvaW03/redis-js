@@ -28,6 +28,8 @@ app.post('/user/:id/hash', async(req, res) => {
 });
 
 // when storing hash, use hgetall to retrieve whole object
+// better to use hash to store due to less code
+// another reason is mutability. Strings are immutable, but hash objects are mutable
 app.get('/user/:id/hash', async(req, res) => {
     const user = await redis.hgetall('user:${req.params.id}:hash');
     res.json({ user });
