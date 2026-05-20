@@ -22,6 +22,11 @@ app.post('/emails', async(req, res) => {
     res.json({queued: true, job});
 });
 
+// disadvantages of queues:
+// job loss once a worker picks it up
+// no retry mechanism if server fails
+// no parallel workers
+
 app.get('/emails/process-one', async(req, res) => {
     const rawJob = await redis.rpop(QUEUE_KEY);
     if(!rawJob){
