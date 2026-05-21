@@ -9,7 +9,7 @@ const redisUrl = process.env.REDIS_URL || "redis://localhost:6379";
 const redis = new Redis(redisUrl);
 
 function otpKey(phone){
-    return 'otp:${phone}';
+    return `otp:${phone}`;
 }
 
 app.post('/otp', async(req, res) => {
